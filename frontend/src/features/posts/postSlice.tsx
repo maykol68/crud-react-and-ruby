@@ -2,15 +2,42 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import produce from  "immer";
 import  { RootState } from "../../app/store"
 
-const initialState: any ={
+
+
+
+export enum Statuses {
+    Initial = "Not Fetched",
+    Loading = "Loading...",
+    UpToDate = "Up To Date",
+    Deleted = "Deleted",
+    Error = "Error"
+}
+
+export interface PostState {
+    id?: number;
+    title?: string;
+    body?: string;
+    created_at?: any;
+    updated_at?: any;
+
+}
+
+export interface PostsState {
+    posts: PostState[];
+    status: string;
+
+}
+
+const initialState: PostsState = {
     posts: [
         {
         id: 0,
-        title: "Hello Word",
-        body: "I'M HERE",
-        created_at: "2023-08-06T23:40:17.757Z",
-        updated_at: "2023-08-06T23:40:17.757Z",
-        url: "http://localhost:3000/posts/1.json"
+        title: "",
+        body: "",
+        created_at: "",
+        updated_at: "",
+        url: ""
         }
-        ]
+    ],
+    status: Status.Initial
 }

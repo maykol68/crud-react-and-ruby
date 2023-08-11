@@ -39,5 +39,43 @@ const initialState: PostsState = {
         url: ""
         }
     ],
-    status: Status.Initial
+    status: Statuses.Initial
 }
+
+export const postSlice = createSlice({
+    name: "posts",
+    initialState,
+    /**
+     * Synchronous actions
+     */
+    reducers: {},
+    extraReducers: (builder) =>  {
+        builder
+        /**
+         * while you wait
+         */
+            .addCase(fetchPostsAsync.pending,  (state) => {
+                return produce(state,  (draftState) => {
+                    draftState.status = Statuses.Loading;
+                })
+            })
+        /*
+        *you got the things
+        */
+            .addCase(fetchPostsAsync.fulfilled, (state) => {
+                return produce(state,  (draftState) => {
+                    draftState.status = Statuses.UpToDate;
+                })
+            })
+        /**
+         *  the error
+         */
+            .addCase(fetchPostsAsync.error, (state) => {
+                return produce(state,  (draftState) => {
+                    draftState.status = Statuses.Error;
+                })
+            })
+    }
+})
+
+export const {} = postSlice.actions;

@@ -79,3 +79,7 @@ export const postSlice = createSlice({
 })
 
 export const {} = postSlice.actions;
+
+export const selectPosts = {state: RootState} => state.posts.posts;
+
+export const selectStatus = (state: RootState) => state.posts.status;

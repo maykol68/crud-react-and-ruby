@@ -61,25 +61,25 @@ export const postSlice = createSlice({
         /**
          * while you wait
          */
-            .addCase(fetchPostsAsync.pending,  (state) => {
-                return produce(state,  (draftState) => {
+            .addCase(fetchPostsAsync.pending, (state) => {
+                return produce(state, (draftState) => {
                     draftState.status = Statuses.Loading;
                 })
             })
         /*
         *you got the things
         */
-            .addCase(fetchPostsAsync.fulfilled, (state) => {
-                return produce(state,  (draftState) => {
+            .addCase(fetchPostsAsync.fulfilled, (state, action) => {
+                return produce(state, (draftState) => {
+                    draftState.posts = action.payload;
                     draftState.status = Statuses.UpToDate;
                 })
-            })
+            })            
         /**
          *  the error
          */
-            .addCase(fetchPostsAsync.rejected, (state, action) => {
-                return produce(state,  (draftState) => {
-                    draftState.posts = action.payload
+            .addCase(fetchPostsAsync.rejected, (state) => {
+                return produce(state, (draftState) => {
                     draftState.status = Statuses.Error;
                 })
             })

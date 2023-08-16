@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 function Posts() {
     const posts = useAppSelector(selectPosts);
     const status = useAppSelector(selectStatus);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
 
     useEffect(() => {
       dispatch(fetchPostsAsync());

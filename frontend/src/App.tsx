@@ -5,7 +5,7 @@ function App() {
     <div className="App container">
       <Posts />
 
-    </div>
+    </div> 
   );
 }
 

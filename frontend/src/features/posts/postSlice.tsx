@@ -37,7 +37,6 @@ const initialState: PostsState = {
         body: "",
         created_at: "",
         updated_at: "",
-        url: ""
         }
     ],
     status: Statuses.Initial
@@ -78,8 +77,9 @@ export const postSlice = createSlice({
         /**
          *  the error
          */
-            .addCase(fetchPostsAsync.error, (state) => {
+            .addCase(fetchPostsAsync.rejected, (state, action) => {
                 return produce(state,  (draftState) => {
+                    draftState.posts = action.payload
                     draftState.status = Statuses.Error;
                 })
             })

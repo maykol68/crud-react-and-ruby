@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import {createPostAsync} from './postSlice';
 
 function PostForm() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
 
-  function submitHandler(e) {
+  function submitHandler(e:any) {
     e.preventDefault();
     const formData = {
       post: {
@@ -14,7 +15,7 @@ function PostForm() {
         body: body,
       }
     }
-    dispatch(createPostAsync(FormData));
+    dispatch(createPostAsync(formData));
     resetState();
   }
 
@@ -22,7 +23,7 @@ function PostForm() {
     setTitle('');
     setBody('');
   }
-
+  
   return <div>
     <h1>PostForm</h1>
     <form>
@@ -43,7 +44,7 @@ function PostForm() {
           type="submit"
           onClick={(e) => submitHandler(e)}>Submit</button>
     </form>
-  </div>
+  </div>;
 }
 
-export default PostForm
+export default PostForm;
